@@ -35,9 +35,7 @@ def substitute(expr: LambdaExpr, var: str, repl: LambdaExpr) -> LambdaExpr:
         case Let(decl, defn, body) if decl.name == var:
             return Let(decl, substitute(defn, var, repl), body)
         case Let(decl, defn, body):
-            return Let(decl,
-                       substitute(defn, var, repl),
-                       substitute(body, var, repl))
+            return Let(decl, substitute(defn, var, repl), substitute(body, var, repl))
         case _:
             return expr
 
